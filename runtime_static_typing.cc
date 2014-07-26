@@ -29,15 +29,15 @@ void g(const DerivedClassTwo& x) {
 
 class HandlingClass {
   public:
-    void operator()(const BaseClass& x) {
+    void operator()(const BaseClass& x) const {
         std::cout << "HandlingClass()(BaseClass)" << std::endl;
     }
 
-    void operator()(const DerivedClassOne& x) {
+    void operator()(const DerivedClassOne& x) const {
         std::cout << "HandlingClass()(DerivedClassOne)" << std::endl;
     }
 
-    void operator()(const DerivedClassTwo& x) {
+    void operator()(const DerivedClassTwo& x) const {
         std::cout << "HandlingClass()(DerivedClassTwo)" << std::endl;
     }
 };
@@ -122,6 +122,11 @@ void RuntimeCase() {
     dispatcher::DispatchCall(*pbase, instance);
     dispatcher::DispatchCall(*pone, instance);
     dispatcher::DispatchCall(*ptwo, instance);
+    
+    std::cout << "HandlingClass()() with generic lambda" << std::endl;
+    dispatcher::DispatchCall(*pbase, [instance](auto a) { instance(a); });
+    dispatcher::DispatchCall(*pone, [instance](auto a) { instance(a); });
+    dispatcher::DispatchCall(*ptwo, [instance](auto a) { instance(a); });
 
     std::cout << std::endl;
 }
