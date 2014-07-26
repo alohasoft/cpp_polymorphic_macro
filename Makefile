@@ -9,7 +9,7 @@ test: binary
 
 all: binary
 
-binary: polymorphic_macro.cc
+binary: runtime_static_typing.cc
 	${CPP} ${CPPFLAGS} -o $@ $<
 
 clean:
