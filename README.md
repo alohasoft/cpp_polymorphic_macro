@@ -1,2 +1,1 @@
-cpp_polymorphic_macro
-=====================
+# cpp_polymorphic_macro
